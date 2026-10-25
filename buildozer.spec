@@ -2,6 +2,10 @@
 title = Omid Edge Installer
 package.name = omidedgeinstaller
 package.domain = org.omid
+
+# مشخص کردن پوشه سورس (همین پوشه فعلی)
+source.dir = .
+
 source.include_exts = py,png,jpg,kv,atlas
 version = 1.0
 requirements = python3,kivy,requests,urllib3,certifi,idna,charset-normalizer
