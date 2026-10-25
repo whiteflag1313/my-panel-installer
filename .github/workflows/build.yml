@@ -32,7 +32,9 @@ jobs:
           libswscale-dev \
           libavformat-dev \
           libavcodec-dev \
-          zlib1g-dev
+          zlib1g-dev \
+          unzip \
+          zip
 
     - name: Install Buildozer and Cython
       run: |
@@ -41,6 +43,7 @@ jobs:
 
     - name: Build APK with Buildozer
       run: |
+        export MALLOC_ARENA_MAX=2
         buildozer -v android debug
 
     - name: Upload APK Artifact
