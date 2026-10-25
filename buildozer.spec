@@ -4,22 +4,19 @@ title = Omid Edge Installer
 package.name = omidedgeinstaller
 package.domain = org.omid
 
-# مسیر فایل‌های سورس
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json,xml
 
 version = 1.0
 
-# پکیج‌های کامل و استاندارد مورد نیاز برای درخواست‌های کلادفلر و رابط کاربری
-requirements = python3,kivy,requests,urllib3,certifi,idna,charset-normalizer,setuptools
+# پکیج‌های ضروری و سبک
+requirements = python3,kivy,requests,urllib3,certifi,idna,charset-normalizer
 
 orientation = portrait
 fullscreen = 0
 
-# دسترسی‌های مورد نیاز اندروید برای اینترنت و شبکه
 android.permissions = INTERNET, ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE
 
-# تنظیمات پایدار نسخه اندروید، SDK و NDK (مطابق الگوی موفق)
 android.api = 33
 android.min_api = 21
 android.sdk = 33
@@ -34,3 +31,5 @@ p4a.branch = master
 log_level = 2
 warn_on_root = 1
 bin_dir = ./bin
+# محدود کردن پردازش موازی برای جلوگیری از کرش کردن کامپایلر در گیت‌هاب
+# parallel_jobs مخفی یا تنظیمات ساخت در صورت نیاز
