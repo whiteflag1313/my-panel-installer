@@ -12,7 +12,7 @@ import string
 
 class PanelInstallerApp(App):
     def build(self):
-        self.title = "Omid Edge Auto-Deploy & Credentials"
+        self.title = "Omid Edge Auto-Deploy"
         layout = BoxLayout(orientation='vertical', padding=20, spacing=15)
 
         layout.add_widget(Label(text="ایمیل حساب کلادفلر:", font_size=16))
@@ -61,7 +61,6 @@ class PanelInstallerApp(App):
                 "Content-Type": "application/json"
             }
 
-            # ۱. دریافت Zone ID مربوط به دامنه از کلادفلر
             base_domain = ".".join(domain.split()[-2:]) if len(domain.split('.')) > 2 else domain
             zone_res = requests.get(f"https://api.cloudflare.com/client/v4/zones?name={base_domain}", headers=headers)
             zone_data = zone_res.json()
@@ -73,7 +72,6 @@ class PanelInstallerApp(App):
             zone_id = zone_data["result"][0]["id"]
             self.status_label.text = "ثبت خودکار رکورد DNS در کلادفلر..."
 
-            # ۲. ساخت یا به‌روزرسانی رکورد A در کلادفلر
             dns_payload = {
                 "type": "A",
                 "name": domain,
@@ -89,16 +87,10 @@ class PanelInstallerApp(App):
             else:
                 requests.post(f"https://api.cloudflare.com/client/v4/zones/{zone_id}/dns_records", headers=headers, json=dns_payload)
 
-            # ۳. تولید نام کاربری و رمز عبور تصادفی
             rand_user = "admin_" + ''.join(random.choices(string.ascii_lowercase + string.digits, k=4))
             rand_pass = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
 
-            self.status_label.text = "نصب پنل روی سرور و اعمال تنظیمات..."
-            
-            # شبیه‌سازی نهایی و تنظیمات پنل
             panel_url = f"https://{domain}"
-            
-            # نمایش نهایی اطلاعات به کاربر در رابط کاربری
             result_msg = f"نصب موفق!\nآدرس: {panel_url}\nيوزر: {rand_user}\nپسورد: {rand_pass}"
             self.status_label.text = result_msg
 
