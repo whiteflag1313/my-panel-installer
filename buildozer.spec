@@ -14,13 +14,14 @@ requirements = python3,kivy,requests,urllib3,certifi,idna,charset-normalizer
 orientation = portrait
 android.permissions = INTERNET, ACCESS_NETWORK_STATE
 
-# تنظیم معماری فقط روی ۶۴ بیت برای جلوگیری از خطای کامپایلر Clang
 android.archs = arm64-v8a
 
 android.api = 31
 android.min_api = 21
 android.sdk = 31
-android.ndk = 25b
+
+# تغییر نسخه NDK به r25c برای سازگاری کامل با کامپایلر Clang
+android.ndk = 25c
 android.accept_sdk_license = True
 
 [buildozer]
