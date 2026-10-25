@@ -14,7 +14,9 @@ requirements = python3,kivy,requests,urllib3,certifi,idna,charset-normalizer
 orientation = portrait
 android.permissions = INTERNET, ACCESS_NETWORK_STATE
 
-# تنظیمات حیاتی برای SDK و رفع خطای build-tools
+# تنظیم معماری فقط روی ۶۴ بیت برای جلوگیری از خطای کامپایلر Clang
+android.archs = arm64-v8a
+
 android.api = 31
 android.min_api = 21
 android.sdk = 31
